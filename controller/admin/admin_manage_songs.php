@@ -6,6 +6,14 @@ if(!isset($_SESSION['admin_id']))
     header("Location: admin_login.php");
     exit();
 }
+$admin_id = $_SESSION['admin_id'];
+$admin_query = mysqli_query($conn,"SELECT * FROM admin WHERE id='$admin_id'");
+$admin_data = mysqli_fetch_assoc($admin_query);
+if(!$admin_data)
+{
+    die("Admin data not found");
+}
+$admin_name = $admin_data['username'];
 $current_page = basename($_SERVER['PHP_SELF']);
 if(isset($_POST['update_song']))
 {
@@ -52,6 +60,7 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Songs - Melodix Admin</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script> 
     <link rel="icon" type="image/x-icon" href="../logo.png"/>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -149,6 +158,53 @@ else
         }
         .logout-btn:hover{
             background:#1ed760;
+        }
+        .admin-profile-btn{
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            background:#53e076;
+            color:#000;
+            border:none;
+            font-size:22px;
+            font-weight:800;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            transition:0.3s;
+        }
+        .admin-profile-btn:hover{
+            transform:scale(1.08);
+        }
+
+        #profileDropdown{
+            background:#1f1f1f;
+            border:1px solid rgba(255,255,255,0.08);
+            border-radius:16px;
+            width:220px;
+            overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,0.4);
+            position:absolute;
+            right:0;
+            top:60px;
+            z-index:999;
+            display:none;
+        }
+
+        #profileDropdown a{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:14px 18px;
+            text-decoration:none;
+            color:#d1d5db;
+            transition:0.3s;
+        }
+
+        #profileDropdown a:hover{
+            background:#2a2a2a;
+            color:#53e076;
         }
         .topbar{
             position:fixed;
@@ -406,15 +462,43 @@ else
             Content Manager
         </div>
         <div class="admin-box">
-            <div>
-                <div class="admin-name">
-                    Admin User
-                </div>
-                <div class="admin-role">
-                    Super Admin
+           <div class="admin-box">
+                <h3>Welcome :
+                    <strong class="text-[#1db954]">
+                        <?php echo $admin_name; ?>
+                    </strong>
+                </h3>
+                <?php $first_letter = strtoupper(substr($admin_name, 0, 1));?>
+                <div class="relative">
+                    <button onclick="toggleProfileDropdown()" class="admin-profile-btn">
+                        <?php echo $first_letter; ?>
+                    </button>
+                    <!-- <div id="profileDropdown" class="hidden absolute right-0 mt-3 w-52 overflow-hidden z-50">
+                        <div class="p-4 border-b border-white/10">
+                            <p class="text-[#53e076] font-semibold text-center">
+                                <?php echo $admin_name; ?>
+                            </p>
+                        </div>
+                        <a href="profile.php" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-[#2a2a2a] hover:text-[#53e076] transition">
+                            <span class="material-symbols-outlined">person</span>
+                            Profile
+                        </a>
+                        <a href="playlists.php" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-[#2a2a2a] hover:text-[#53e076] transition">
+                            <span class="material-symbols-outlined">playlist_add</span>
+                            Playlists
+                        </a>
+                        
+                        <a href="library.php" class="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-[#2a2a2a] hover:text-[#53e076] transition">
+                            <span class="material-symbols-outlined">library_music</span>
+                            Library
+                        </a>
+                        <a href="logout.php" class="flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-[#2a2a2a] transition">
+                            <span class="material-symbols-outlined">logout</span>
+                            Logout
+                        </a>
+                    </div> -->
                 </div>
             </div>
-            <img src="https://i.pravatar.cc/100?p" alt="Admin">
         </div>
     </div>
     <div class="main-content">
@@ -541,5 +625,27 @@ else
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleProfileDropdown()
+        {
+            const dropdown =
+            document.getElementById("profileDropdown");
+            if(dropdown.style.display === "block")
+            {
+                dropdown.style.display = "none";
+            }
+            else
+            {
+                dropdown.style.display = "block";
+            }
+        }
+        window.addEventListener("click", function(event)
+        {
+            if(!event.target.closest(".admin-box"))
+            {
+                document.getElementById("profileDropdown").style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
