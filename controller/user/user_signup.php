@@ -95,7 +95,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
                     $mail->isHTML(true);
                     $mail->Subject = "Melodix Account Created Successfully";
                     $mail->Body = "
-                    <h2>Welcome to Melodix</h2>
+                    <h2>Welcome to<span style='color: #158e46;'> Melodix</span></h2>
                     <p>Your account created successfully.</p>
                     <p><b>Username:</b> $username</p>
                     <p><b>Email:</b> $email</p>
