@@ -32,13 +32,13 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['confirm
 
                 $mail->addAddress($email, $row['username']);
                 $mail->isHTML(true);
-                $mail->Subject = "Melodix Password Reset Successful";
+                $mail->Subject = "<span style='color: #158e46;'>Melodix</span> Password Reset Successful";
                 $mail->Body = "
                 <h2>Password Reset Successful</h2>
-                <p>Your Melodix password has been updated successfully.</p>
+                <p>Your <span style='color: #158e46;'>Melodix</span> password has been updated successfully.</p>
                 <p><b>Username:</b> {$row['username']}</p>
                 <p>If you did not make this change, please contact support immediately.</p>
-                <p>Best regards,<br>Melodix Team</p>";
+                <p>Best regards,<br><span style='color: #158e46;'>Melodix Team</span></p>";
                 $mail->send();
                 $statusMessage = "Password updated successfully. Redirecting to login...";
                 $statusType = "success";

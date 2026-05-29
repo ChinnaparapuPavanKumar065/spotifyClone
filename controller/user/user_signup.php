@@ -93,7 +93,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
 
                     $mail->addAddress($email, $username);
                     $mail->isHTML(true);
-                    $mail->Subject = "Melodix Account Created Successfully";
+                    $mail->Subject = "<span style='color: #158e46;'>Melodix</span> Account Created Successfully";
                     $mail->Body = "
                     <h2>Welcome to<span style='color: #158e46;'> Melodix</span></h2>
                     <p>Your account created successfully.</p>
@@ -107,7 +107,7 @@ if(isset($_POST['username']) && isset($_POST['password']))
                     $mail->addAddress("no-reply@gmail.com");
                     $mail->Body = "
                     <h2>New User Registered</h2>
-                    <p>A new user created account in Melodix.</p>
+                    <p>A new user created account in <span style='color: #158e46;'>Melodix</span>.</p>
                     <table cellpadding='10' border='1' style='border-collapse:collapse;'>
                         <tr>
                             <td><b>User ID</b></td>
