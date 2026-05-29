@@ -190,13 +190,19 @@ http://localhost/spotifyClone
 
 ## 📈 Future Enhancements
 
-* Real-Time Music Streaming
-* Like & Favorite Songs
-* Recently Played Songs
-* Music Recommendations
+* AI-Based Music Recommendation System
+* Real-Time Chat Between Users
+* Collaborative Playlists
+* Follow Artists and Other Users
+* Music Download for Offline Listening
+* Song Lyrics Integration
 * Dark/Light Theme Toggle
-* Mobile Application Integration
-* Social Sharing Features
+* Mobile Application (Android & iOS)
+* Social Media Sharing
+* Listening History Analytics
+* Personalized Daily Mixes
+* Push Notifications for New Releases
+
 
 ---
 
