@@ -12,7 +12,7 @@ try
     $mail->Password = 'XXXX XXXX XXXX XXXX';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
-    $mail->setFrom('pavankumarchinnaparapu123@gmail.com', 'no-Reply');
+    $mail->setFrom('melodix@gmail.com', 'no-Reply');
 }
 catch(Exception $e)
 {
